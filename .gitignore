@@ -6,3 +6,7 @@ data
 .sites-runtime/
 .cache/
 artifacts/
+.env
+.env.*
+.openai/
+.spark/

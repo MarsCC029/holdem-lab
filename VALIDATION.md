@@ -5,7 +5,18 @@
 - 25 个测试文件、174 项测试通过，生产构建成功。
 - 新增 Safari 导航响应重定向兼容、旧缓存修复及真实计算 Worker 就绪自检。
 - 全新本地浏览器会话的离线缓存与 Worker 自检通过，刷新后再次通过；这不是 iPhone 真机认证。
-- 原 Sites 首页和 sw.js 均为平台 HTTP403；公开托管正在迁移，最终地址和部署结果由部署负责人更新。详见 `DEPLOYMENT.md`。
+- 原 Sites 首页和 sw.js 均为平台 HTTP403；现已迁移至 `https://marscc029.github.io/holdem-lab/`。GitHub Pages 公开且强制 HTTPS，游戏无需飞书或 GitHub 登录。详见 `DEPLOYMENT.md`。
+
+## GitHub Pages 公开版本实测
+
+- Pages 首次生产提交 `3ae7ad16e178b223504a3f1b6bcefaca2833b681` 状态 built；来源 main:/docs。
+- 不带 Cookie/认证的请求：13 个静态文件全部 HTTP 200、SHA256 与本地审查构建一致；包括主页、sw.js、计算 Worker、manifest 和图标。脚本 MIME 正确，无跨域登录跳转或平台改写。
+- Chromium 390×844 手机视口：匿名新入口显示“已可离线使用”；实际创建 Worker，完成 5,000 样本权益计算，显示独赢、平局、权益、EV、样本误差。
+- 实际执行 Call，验证行动后暂停及解析；刷新恢复同一底牌、投入与剩余筹码。翻后无人下注时界面显示 Bet，已有下注时显示 Raise to。
+- 题库半池下注题 P=120，答 60 正确，显示公式与分类进度；刷新后保留。`all in` 检索找到 All-in / Short All-in 两词条。
+- HTTP 完整性报告保存在交付目录的 `artifacts/github-pages-http-verification.json`；手机视口截图 `artifacts/holdem-pages-iphone-preview.png`。这些检查不能替代真实 iPhone。
+- 公开站点另通过 Desktop WebKit 26.5 的 8 项集成检查：正确 `/holdem-lab/` SW scope、11 项缓存及真实 Worker 就绪、5,000 样本提示、术语弹窗、行动/快照写入、训练反馈、All-in 检索，以及由 SW 提供的刷新和 IndexedDB 恢复。无页面脚本错误或外部域名请求；报告 `artifacts/webkit-pwa-public-result.json`。
+- 对公开站点的 Playwright route 网络拦截会在导航前返回 `Blocked by Web Inspector`，不作为成功断网的证据。真实服务器不可达后的离线功能由下述本地 9 项检查验证；真机飞行模式检查仍待设备验收。
 
 日期：2026-11-09（Asia/Shanghai）。环境：Windows、Node.js 24.18.0、Vite 8.3.6、Vitest 5.1.0，Chromium 内置浏览器；另以 Playwright 1.62.1 的 Desktop WebKit 26.5 进行本地离线集成检查。
 

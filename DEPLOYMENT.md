@@ -12,6 +12,17 @@
 - 生产文件保持同源，禁用 Git 换行转换与 Jekyll 改写。仅上传项目源码、许可证和构建产物，不上传本机凭据或玩家记录。
 - 只有发布接口返回且通过匿名检查的 URL 才作为新入口。
 
+## GitHub Pages 发布
+
+- 仓库：`https://github.com/MarsCC029/holdem-lab`。
+- Pages 返回入口：`https://marscc029.github.io/holdem-lab/`，保留末尾斜线。
+- 来源：`main` 分支的 `/docs`；公开访问，强制 HTTPS。
+- `docs/.nojekyll` 禁用 Jekyll；`.gitattributes` 禁止换行转换，以保留离线资源校验值。
+- GitHub Pages 不读取 `_headers`。本版仍有 HTML 内的 CSP 与 referrer 策略；不将未生效的额外 HTTP 响应头计入安全结论。
+- 首次生产版本 `3ae7ad16e178b223504a3f1b6bcefaca2833b681` 已构建成功。匿名访问页面及全部 13 个静态文件均 HTTP 200、SHA256 与审查构建一致；sw.js 和计算 Worker 的 MIME 正确，无登录重定向或 Cloudflare 挑战。
+- 公开站点的 Chromium 手机视口实测已显示“已可离线使用”，成功运行 5,000 样本权益计算、行动解析、专项题与术语搜索，并恢复刷新前的当前手牌和训练记录。
+- 完整验证结果和真机限制见 `VALIDATION.md`。原域名的 IndexedDB 不会自动转移；已有记录应先导出 JSON，在新入口导入。
+
 ## 已做的兼容性修复
 
 - Safari 对 Service Worker 导航响应的重定向历史有严格要求；安装、修复及读取旧缓存时使用不带历史重定向标记的本地响应。内容仍逐项 SHA256 校验，保留 CSP 等安全头。

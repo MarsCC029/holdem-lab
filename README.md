@@ -2,6 +2,8 @@
 
 中文、免登录的六人桌无限注德州扑克练习工具。基于 MIT 开源 Poker Mentor 固定版本改造，只使用练习筹码。
 
+**打开游戏：<https://marscc029.github.io/holdem-lab/>**。无需飞书、GitHub 或其他账号；练习记录仅保存在当前设备。
+
 ## 使用
 
 - **实战牌桌**：对战五类电脑对手。盲注 5/10、初始 1,000 筹码；每次行动后暂停，可查看当时的信息与范围分析，再点“继续牌局”。
@@ -12,7 +14,7 @@
 
 ## iPhone 安装和离线验收
 
-1. 用 iPhone Safari 联网打开部署链接（见交付消息）。目标支持 iOS 17 及以上。
+1. 用 iPhone Safari 联网打开上方游戏链接。目标支持 iOS 17 及以上。
 2. 点分享 → 添加到主屏幕；若有“作为网页 App 打开”，保持开启。
 3. 从主屏幕启动，等待顶部出现“已可离线使用”。不要仅凭页面已经显示就断网。
 4. 开始一手实战，做一次行动、阅读解析；再练一题，搜索一次术语。
@@ -34,6 +36,18 @@ npm run preview -- --host 127.0.0.1 --port 4173
 ```
 
 打开 `http://127.0.0.1:4173/`。生产构建会生成版本化离线资源。开发命令 `npm run dev` 适合改代码，但不用于验收离线缓存。手机不能通过自己的 `127.0.0.1` 访问电脑服务器；应使用部署的 HTTPS 链接。
+
+## 维护 GitHub Pages
+
+```sh
+npm run build:pages
+```
+
+此命令先构建游戏，再按 Service Worker 清单验证所有资源的 SHA256，将产物逐字节复制到本仓库的 `docs/`，并添加 `.nojekyll`。`docs/` 是自动生成目录，重新执行会替换其中内容；不要在其中手改文件。已有构建未改变时，可单独执行 `node scripts/prepare-pages.mjs` 重新生成 `docs/`。
+
+将本次源码和 `docs/` 一起提交、推送到 `main`。仓库 Settings → Pages 选择 **Deploy from a branch → main → /docs**，开启 HTTPS。使用发布页返回的 `https://marscc029.github.io/holdem-lab/`，保留末尾 `/`，以便资源和 Service Worker 正确解析仓库路径。
+
+保留仓库的 `.gitattributes` 换行转换设置，避免上传时改变资源字节。`.nojekyll` 禁止再次经过 Jekyll 转换。GitHub Pages 不解释 `_headers` 配置文件；HTML 内已有的 CSP meta 仍生效。发布后需核对资源、匿名访问和“已可离线使用”状态，再按上面的 iPhone 步骤验收。
 
 ## 如何理解计算
 
