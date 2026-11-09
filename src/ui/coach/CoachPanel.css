@@ -1,0 +1,170 @@
+.coach-panel {
+  margin: 0 24px 10px;
+  padding: 10px 16px 12px;
+  border-radius: 10px;
+  background: linear-gradient(170deg, rgba(22, 28, 21, 0.96), rgba(13, 17, 12, 0.96));
+  border: 1px solid rgba(233, 200, 128, 0.25);
+  border-left: 3px solid var(--brass);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  animation: coach-in 0.3s ease both;
+}
+
+@keyframes coach-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.coach-panel--fold { border-left-color: var(--danger); }
+.coach-panel--call { border-left-color: #5eae83; }
+.coach-panel--raise { border-left-color: var(--brass-bright); }
+.coach-panel--pending { border-left-color: var(--muted); }
+
+.coach-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.coach-tag {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.26em;
+  color: var(--brass);
+}
+
+.coach-chip {
+  padding: 3px 10px 4px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--cream-dim);
+  background: rgba(10, 14, 10, 0.8);
+  border: 1px solid rgba(233, 200, 128, 0.14);
+}
+
+.coach-chip--hand {
+  color: var(--cream);
+}
+
+.coach-equity {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.coach-equity-label {
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.coach-equity-bar {
+  position: relative;
+  width: 120px;
+  height: 8px;
+  border-radius: 4px;
+  background: #232a22;
+  overflow: visible;
+}
+
+.coach-equity-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #4b8a67, #7fc9a0);
+  transition: width 0.4s ease;
+}
+
+.coach-equity-marker {
+  position: absolute;
+  top: -3px;
+  bottom: -3px;
+  width: 2px;
+  background: var(--brass-bright);
+  box-shadow: 0 0 6px rgba(233, 200, 128, 0.8);
+}
+
+.coach-equity-num {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: #9fd9b9;
+}
+
+.coach-advice {
+  margin-left: auto;
+  padding: 4px 14px 5px;
+  border-radius: 7px;
+  font-size: 12.5px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.coach-advice--fold {
+  background: rgba(140, 74, 58, 0.25);
+  color: #e89579;
+  border: 1px solid rgba(212, 89, 62, 0.45);
+}
+
+.coach-advice--check,
+.coach-advice--call {
+  background: rgba(63, 122, 90, 0.25);
+  color: #8fd4ae;
+  border: 1px solid rgba(122, 200, 160, 0.45);
+}
+
+.coach-advice--raise {
+  background: rgba(201, 162, 94, 0.2);
+  color: var(--brass-bright);
+  border: 1px solid rgba(233, 200, 128, 0.5);
+}
+
+.coach-reasoning {
+  margin-top: 7px;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--cream-dim);
+  max-width: 88ch;
+}
+
+.coach-reasoning b {
+  color: var(--cream);
+  font-weight: 700;
+}
+
+@media (max-width: 700px) {
+  .coach-panel {
+    margin: 0 8px 6px;
+    padding: 7px 10px 9px;
+  }
+
+  .coach-row {
+    gap: 6px;
+  }
+
+  .coach-chip {
+    font-size: 10px;
+    padding: 2px 8px 3px;
+  }
+
+  .coach-equity-bar {
+    width: 72px;
+  }
+
+  .coach-equity-label {
+    display: none;
+  }
+
+  .coach-advice {
+    font-size: 11px;
+    padding: 3px 10px 4px;
+  }
+
+  .coach-reasoning {
+    font-size: 11.5px;
+    margin-top: 5px;
+  }
+}

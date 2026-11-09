@@ -1,0 +1,17 @@
+{
+  "id": "./",
+  "name": "筹码实验室 · Hold’em Lab",
+  "short_name": "筹码实验室",
+  "description": "离线单人德州扑克教学与练习，所有记录保存在此设备。",
+  "lang": "zh-CN",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f5f5ef",
+  "theme_color": "#204f3b",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

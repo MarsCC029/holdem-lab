@@ -1,0 +1,30 @@
+{
+  "name": "holdem-lab",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build && node scripts/build-offline.mjs",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "idb": "^8.0.3",
+    "phe": "^0.6.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "zustand": "^5.0.14"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "6.2.1",
+    "fast-check": "^4.8.0",
+    "pokersolver": "^2.1.4",
+    "typescript": "^6.0.3",
+    "vite": "8.3.6",
+    "vitest": "5.1.0"
+  }
+}

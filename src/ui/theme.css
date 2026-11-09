@@ -1,0 +1,87 @@
+:root {
+  /* the midnight card room */
+  --room-0: #0b0e0c;
+  --room-1: #11150f;
+  --felt-hi: #245c41;
+  --felt-lo: #0e2b1d;
+  --rail-hi: #3b2c1d;
+  --rail-lo: #17100a;
+  --brass: #c9a25e;
+  --brass-bright: #ecd9a8;
+  --cream: #f2ead8;
+  --cream-dim: #b9b3a2;
+  --muted: #7c847a;
+  --card-face: #faf7ee;
+  --card-red: #b93a2b;
+  --card-black: #24211c;
+  --card-back-1: #7e2f26;
+  --card-back-2: #4c1712;
+  --fold: #8c4a3a;
+  --call: #3f7a5a;
+  --raise: #c9a25e;
+  --danger: #d4593e;
+  --win-glow: rgba(233, 200, 128, 0.55);
+
+  --font-display: 'Fraunces', 'Georgia', serif;
+  --font-ui: 'Schibsted Grotesk', 'Segoe UI', sans-serif;
+  --font-mono: 'Spline Sans Mono', 'Consolas', monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background:
+    radial-gradient(1200px 700px at 50% -10%, rgba(201, 162, 94, 0.1), transparent 60%),
+    radial-gradient(900px 600px at 50% 115%, rgba(20, 60, 40, 0.25), transparent 60%),
+    var(--room-0);
+  color: var(--cream);
+  font-family: var(--font-ui);
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* film grain over the whole room */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  z-index: 40;
+}
+
+button {
+  font-family: var(--font-ui);
+  cursor: pointer;
+}
+
+/* phones: hard-lock the page so nothing can pan it sideways */
+@media (max-width: 700px) {
+  body {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    overscroll-behavior: none;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: #2c332c;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
